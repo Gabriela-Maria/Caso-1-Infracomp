@@ -5,10 +5,16 @@ public class Distribuidor extends Thread{
 
     Distribuidor(String Etipo, DepoDistribucion Edeposito){
         this.tipo = Etipo;
-        this.deposito = deposito;
+        this.deposito = Edeposito;
     }
 
     public void run(){
-
+        while (true){
+            String producto = deposito.retirar(tipo);
+            if (producto.equals("FIN_" + tipo)) {
+                System.out.println("Distribuidor " + tipo + " recibió el producto de terminación: " + producto);
+                break;
+            }    
+        }
     }
 }

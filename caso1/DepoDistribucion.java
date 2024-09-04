@@ -23,17 +23,18 @@ public class DepoDistribucion {
         notifyAll();
     }
 
-    public synchronized String retirar(){
-        //si esta vacio
-        while (productos.isEmpty()) {
+    public synchronized String retirar(String tipoProducto){
+        //si esta vacio o si el producto no es el del tipo
+        while (productos.isEmpty()||productos.get(0).equals(tipoProducto)||productos.get(0).equals("FIN_"+tipoProducto)) {
             try {
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        //si hay elementos, se quita el primero de la lista
+        //se quita el primero de la lista
         String producto = productos.remove(0);
+        System.out.println("Producto distribuido: " + producto);
         notifyAll();
         return producto;
     }

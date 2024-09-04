@@ -22,7 +22,8 @@ public class Principal {
         Distribuidor distribuidorB2 = new Distribuidor("B", depoDistribucion);
 
         // Crear operadores
-        Operador operador = new Operador(depoProduccion, depoDistribucion, cinta);
+        Operador operadorProd = new Operador(depoProduccion, null, cinta);
+        Operador operadorDist = new Operador(null, depoDistribucion, cinta);
 
         // Iniciar hilos
         productorA1.start();
@@ -35,6 +36,7 @@ public class Principal {
         distribuidorB1.start();
         distribuidorB2.start();
 
-        operador.start();
+        operadorProd.start();
+        operadorDist.start();
     }
 }
