@@ -1,11 +1,15 @@
 public class Cinta {
     private String producto;
 
+
+//ambos deben ser semi activos
+
     public synchronized void agregar(String producto) {
         //espera hbasta que haya un producto
         while (this.producto != null) {
+            Thread.yield();
             try {
-                wait();
+                wait(100); 
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -17,8 +21,9 @@ public class Cinta {
     public synchronized String retirar(){
         //espera hasta que haya un producto
         while (this.producto == null) { 
+            Thread.yield();
             try {
-                wait();
+                wait(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

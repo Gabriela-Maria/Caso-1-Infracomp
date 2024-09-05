@@ -16,13 +16,13 @@ public class Productor extends Thread{
             //ej: "A0", "B67", donde el numero es el numero de productos creados hasta el momento por el productor
             numProdActual++;
             String producto = tipo+numProdActual;
-            deposito.agregar(producto);
             System.out.println("Productor " + tipo + " produjo: " + producto);
+            deposito.agregar(producto);
             
         }
         String ultimoProducto = "FIN_" + tipo;
-        deposito.agregar(ultimoProducto);
         System.out.println("Productor " + tipo + " produjo: " + ultimoProducto);
+        deposito.agregar(ultimoProducto);
         
 
     }

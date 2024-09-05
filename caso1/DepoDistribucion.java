@@ -8,11 +8,13 @@ public class DepoDistribucion {
         this.capDepDist = EcapDepDist;
     }
 
+    //hacer semi activa
     public synchronized void agregar(String producto){
         //si esta lleno
         while (productos.size() >= capDepDist) {
+            Thread.yield();
             try {
-                wait();
+                wait(100); 
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

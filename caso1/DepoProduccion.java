@@ -23,11 +23,13 @@ public class DepoProduccion {
         notifyAll();
     }
 
+    // hacer semi activa
     public synchronized String retirar(){
         //si esta vacio
         while (productos.isEmpty()) {  
+            Thread.yield();
             try {
-                wait();
+                wait(100); 
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -35,7 +37,7 @@ public class DepoProduccion {
         //si hay elementos, se quita el primero de la lista
         String producto = productos.remove(0);
         System.out.println("producto eliminado del Deposito de Produccion: " + producto);
-        notifyAll(); 
+        notifyAll();
         return producto;
     }
 
