@@ -1,5 +1,4 @@
 public class Principal {
-    //main creado por mi dios gpt 
     public static void main(String[] args) {
         int numProductos = 100;
         int capDepProd = 50;

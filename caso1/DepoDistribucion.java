@@ -8,7 +8,6 @@ public class DepoDistribucion {
         this.capDepDist = EcapDepDist;
     }
 
-    //hacer semi activa
     public synchronized void agregar(String producto){
         //si esta lleno
         while (productos.size() >= capDepDist) {
@@ -27,7 +26,7 @@ public class DepoDistribucion {
     }
 
     public synchronized String retirar(String tipoProducto){
-        
+
         //si esta vacio o si el producto no es el del tipo
         while (productos.isEmpty() || !(productos.get(0).contains(tipoProducto))) {
             try {

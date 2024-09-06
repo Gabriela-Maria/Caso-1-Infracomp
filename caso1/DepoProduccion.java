@@ -23,7 +23,6 @@ public class DepoProduccion {
         notifyAll();
     }
 
-    // hacer semi activa
     public synchronized String retirar(){
         //si esta vacio
         while (productos.isEmpty()) {  
