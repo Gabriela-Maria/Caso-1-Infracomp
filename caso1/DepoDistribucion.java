@@ -23,11 +23,13 @@ public class DepoDistribucion {
         productos.add(producto);
         System.out.println("Producto agregado al DepoDistribucion: " + producto);
         notifyAll();
+
     }
 
     public synchronized String retirar(String tipoProducto){
+        
         //si esta vacio o si el producto no es el del tipo
-        while (productos.isEmpty()||productos.get(0).equals(tipoProducto)||productos.get(0).equals("FIN_"+tipoProducto)) {
+        while (productos.isEmpty() || !(productos.get(0).contains(tipoProducto))) {
             try {
                 wait();
             } catch (InterruptedException e) {

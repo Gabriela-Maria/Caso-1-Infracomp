@@ -23,6 +23,7 @@ public class Productor extends Thread{
         String ultimoProducto = "FIN_" + tipo;
         System.out.println("Productor " + tipo + " produjo: " + ultimoProducto);
         deposito.agregar(ultimoProducto);
+        System.out.println("Productor "+ tipo + " ha finalizado su ejecucion");
         
 
     }

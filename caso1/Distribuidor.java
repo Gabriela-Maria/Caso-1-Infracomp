@@ -12,10 +12,11 @@ public class Distribuidor extends Thread{
     public void run(){
         while (continuar){
             String producto = deposito.retirar(tipo);
-            if (producto.equals("FIN_" + tipo)) {
+            if (producto.contains("FIN_")) {
                 System.out.println("Distribuidor " + tipo + " recibió el producto de terminación: " + producto);
                 continuar = false;
             }    
         }
+        System.out.println("Distribuidor "+ tipo + " ha finalizado su ejecucion");
     }
 }

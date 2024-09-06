@@ -20,7 +20,6 @@ public class Operador extends Thread{
                     finalizados++;
                 }
                 if (finalizados ==4){
-                    System.out.println(finalizados+"---opProd");
                     continuar = false;
                 }
 
@@ -31,26 +30,27 @@ public class Operador extends Thread{
                     finalizados++;
                 }
                 if (finalizados ==4){
-                    System.out.println(finalizados+"---opDist");
                     continuar=false;
                 }
     
             }
         }
+
+        System.out.println("Operador ha finalizado su ejecucion");
     }
 
     private String depoProdACinta() {
         String producto = depoProduccion.retirar();
-        cinta.agregar(producto);
         System.out.println("Operador movio de depo produccion a cinta: " + producto);
+        cinta.agregar(producto);
         return producto;
        
     }
 
     private String cintaADepoDist() {
         String producto = cinta.retirar();
-        depoDistribucion.agregar(producto);
         System.out.println("Operador movio de cinta a depo distribucion: " + producto);
+        depoDistribucion.agregar(producto);
         return producto;
         
     }

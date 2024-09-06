@@ -1,9 +1,9 @@
 public class Principal {
     //main creado por mi dios gpt 
     public static void main(String[] args) {
-        int numProductos = 10;
-        int capDepProd = 5;
-        int capDepDist = 5;
+        int numProductos = 1;
+        int capDepProd = 1;
+        int capDepDist = 1;
 
         DepoProduccion depoProduccion = new DepoProduccion(capDepProd);
         DepoDistribucion depoDistribucion = new DepoDistribucion(capDepDist);

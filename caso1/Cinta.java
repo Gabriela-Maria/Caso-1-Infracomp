@@ -15,6 +15,7 @@ public class Cinta {
             }
         }
         this.producto = producto;
+        System.out.println("Se agrego el producto "+ producto + " a la CINTA");
         notifyAll();
     }
 
@@ -29,6 +30,7 @@ public class Cinta {
             }
         }
         String prod = this.producto;
+        System.out.println("Se elimino el producto "+ producto + " de la CINTA");
         //lo retira
         this.producto = null;
         notifyAll();
