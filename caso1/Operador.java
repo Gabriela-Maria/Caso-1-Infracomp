@@ -11,6 +11,7 @@ public class Operador extends Thread{
         this.cinta = Ecinta;
     }
 
+    @Override
     public void run(){
         while (continuar){
             if (depoDistribucion==null) {
@@ -40,8 +41,8 @@ public class Operador extends Thread{
     }
 
     private String depoProdACinta() {
-        String producto = depoProduccion.retirar();
-        System.out.println("Operador movio de depo produccion a cinta: " + producto);
+        String producto = depoProduccion.retirar(); 
+        System.out.println("Operador 1                                      depP->cinta(" + producto + ")" );
         cinta.agregar(producto);
         return producto;
        
@@ -49,7 +50,7 @@ public class Operador extends Thread{
 
     private String cintaADepoDist() {
         String producto = cinta.retirar();
-        System.out.println("Operador movio de cinta a depo distribucion: " + producto);
+        System.out.println("Operador 2                                      cinta->depD(" + producto + ")" );
         depoDistribucion.agregar(producto);
         return producto;
         

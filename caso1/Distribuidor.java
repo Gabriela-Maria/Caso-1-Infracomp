@@ -9,13 +9,19 @@ public class Distribuidor extends Thread{
         this.deposito = Edeposito;
     }
 
+    @Override
     public void run(){
         while (continuar){
             String producto = deposito.retirar(tipo);
+          //  int id = Principal.getNextID();
+
             if (producto.contains("FIN_")) {
-                System.out.println("Distribuidor " + tipo + " recibió el producto de terminación: " + producto);
+                System.out.println("Distribuidor                                    distribuir(" + producto + ")");
                 continuar = false;
+                
             }    
+            System.out.println("Distribuidor                                    distribuir(" + producto + ")" );
+
         }
         System.out.println("Distribuidor "+ tipo + " ha finalizado su ejecucion");
     }

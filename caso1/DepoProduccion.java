@@ -8,7 +8,7 @@ public class DepoProduccion {
         this.capDepProd = EcapDepProd;
     }
 
-    public synchronized void agregar(String producto){
+    public synchronized void agregar(String producto, int id){
         //si esta lleno
         while (productos.size() >= capDepProd) {  
             try {
@@ -19,7 +19,8 @@ public class DepoProduccion {
         }
         //si sigue con espacio
         productos.add(producto);
-        System.out.println("producto agregado al Deposito de Produccion: " + producto);
+        System.out.println("DepoProduccion                                  agregar(" + producto + ")");
+
         notifyAll();
     }
 
@@ -35,7 +36,7 @@ public class DepoProduccion {
         }
         //si hay elementos, se quita el primero de la lista
         String producto = productos.remove(0);
-        System.out.println("producto eliminado del Deposito de Produccion: " + producto);
+        System.out.println("DepoProduccion                                  retirar(" + producto + ")" );
         notifyAll();
         return producto;
     }

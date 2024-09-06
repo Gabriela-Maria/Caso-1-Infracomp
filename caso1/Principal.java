@@ -1,8 +1,27 @@
+import java.util.Scanner;
+
 public class Principal {
+
+    private static int contadorGlobal = 1;
+
+    // Método estático para obtener el próximo ID de los productos
+    public static synchronized int getNextID() {
+        return contadorGlobal++;
+    }
     public static void main(String[] args) {
-        int numProductos = 100;
-        int capDepProd = 50;
-        int capDepDist = 60;
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Ingrese el número de productos: ");
+        int numProductos = scanner.nextInt();        
+
+        
+        System.out.print("Ingrese la capacidad del Déposito de Producción: ");
+        int capDepProd = scanner.nextInt();     
+        
+        System.out.print("Ingrese la capacidad del Déposito de Distribución: ");
+        int capDepDist = scanner.nextInt();     
+
 
         DepoProduccion depoProduccion = new DepoProduccion(capDepProd);
         DepoDistribucion depoDistribucion = new DepoDistribucion(capDepDist);
@@ -37,5 +56,7 @@ public class Principal {
 
         operadorProd.start();
         operadorDist.start();
+
+        scanner.close();
     }
 }

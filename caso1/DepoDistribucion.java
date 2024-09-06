@@ -20,7 +20,7 @@ public class DepoDistribucion {
         }
         //si hay espacio
         productos.add(producto);
-        System.out.println("Producto agregado al DepoDistribucion: " + producto);
+        System.out.println("DepoDistribucion                                agregar(" + producto + ")");
         notifyAll();
 
     }
@@ -37,7 +37,7 @@ public class DepoDistribucion {
         }
         //se quita el primero de la lista
         String producto = productos.remove(0);
-        System.out.println("Producto distribuido: " + producto);
+        System.out.println("DepoDistribucion                                retirar(" + producto + ")");
         notifyAll();
         return producto;
     }
