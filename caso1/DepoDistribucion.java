@@ -8,20 +8,17 @@ public class DepoDistribucion {
         this.capDepDist = EcapDepDist;
     }
 
-    public synchronized void agregar(String producto){
+    public synchronized Boolean agregar(String producto){
         //si esta lleno
-        while (productos.size() >= capDepDist) {
-            Thread.yield();
-            try {
-                wait(100); 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        if (productos.size() >= capDepDist) {
+            // Si el depósito está lleno, no se puede agregar
+            return false;
         }
         //si hay espacio
         productos.add(producto);
         System.out.println("DepoDistribucion                                agregar(" + producto + ")");
-        notifyAll();
+        notify();  // Notifica a cualquier thread en espera
+        return true;
 
     }
 

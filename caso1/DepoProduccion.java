@@ -24,20 +24,15 @@ public class DepoProduccion {
         notifyAll();
     }
 
+
     public synchronized String retirar(){
-        //si esta vacio
-        while (productos.isEmpty()) {  
-            Thread.yield();
-            try {
-                wait(100); 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        if (productos.isEmpty()) {
+            return null;
         }
         //si hay elementos, se quita el primero de la lista
         String producto = productos.remove(0);
         System.out.println("DepoProduccion                                  retirar(" + producto + ")" );
-        notifyAll();
+        notify(); 
         return producto;
     }
 

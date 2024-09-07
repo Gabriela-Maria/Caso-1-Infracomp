@@ -1,36 +1,29 @@
 public class Cinta {
     private String producto;
 
-    public synchronized void agregar(String producto) {
+    public synchronized Boolean agregar(String producto) {
         //espera hbasta que haya un producto
-        while (this.producto != null) {
-            Thread.yield();
-            try {
-                wait(100); 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        if (this.producto != null) {
+            return false;  // No se puede agregar, cinta ocupada
         }
         this.producto = producto;
         System.out.println("Cinta                                           agregar(" + producto + ")");
-        notifyAll();
+        notify();
+        return true;
+
     }
 
     public synchronized String retirar(){
         //espera hasta que haya un producto
-        while (this.producto == null) { 
-            Thread.yield();
-            try {
-                wait(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        if (this.producto == null) {
+            return null;  // Cinta vacía
         }
         String prod = this.producto;
+        this.producto = null;
+
         System.out.println("Cinta                                           retirar(" + producto + ")");
         //lo retira
-        this.producto = null;
-        notifyAll();
+        notify();
         return prod;
     }
 }

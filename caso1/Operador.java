@@ -15,8 +15,26 @@ public class Operador extends Thread{
     public void run(){
         while (continuar){
             if (depoDistribucion==null) {
-                // producto de DepoProduccion a Cinta
-                String producto = depoProdACinta();
+                // De producto de DepoProduccion a Cinta
+
+                // Retira de producto de DepoProduccion 
+                String producto = depoProduccion.retirar();  
+                while(producto==null){
+                     Thread.yield();
+                     producto = depoProduccion.retirar();  // Vuelve a intentar retirar
+
+                    }
+
+                System.out.println("Operador 1                                      depP->cinta(" + producto + ")");
+
+                // Agrega a la cinta
+                boolean agregado = cinta.agregar(producto);
+                while(!agregado){
+                        Thread.yield();
+                        agregado = cinta.agregar(producto);  // Vuelve a intentar agregar
+
+                }
+
                 if (producto.contains("FIN_")){
                     finalizados++;
                 }
@@ -26,7 +44,24 @@ public class Operador extends Thread{
 
             } else if (depoProduccion==null) {
                 // producto de Cinta a DepoDistribucion
-                String producto = cintaADepoDist();
+
+                // Retira de la cinta
+                String producto = cinta.retirar();
+                while(producto==null){
+                        Thread.yield();
+                        producto = cinta.retirar();  // Vuelve a intentar retirar
+
+                } 
+
+                System.out.println("Operador 2                                      cinta->depD(" + producto + ")" );
+                // Agrega a deposito de distribucion
+                boolean agregado = depoDistribucion.agregar(producto);
+                while(!agregado){
+                    Thread.yield();   
+                    agregado = depoDistribucion.agregar(producto);  // Vuelve a intentar agregar
+
+                }
+
                 if (producto.contains("FIN_")){
                     finalizados++;
                 }
@@ -38,21 +73,5 @@ public class Operador extends Thread{
         }
 
         System.out.println("Operador ha finalizado su ejecucion");
-    }
-
-    private String depoProdACinta() {
-        String producto = depoProduccion.retirar(); 
-        System.out.println("Operador 1                                      depP->cinta(" + producto + ")" );
-        cinta.agregar(producto);
-        return producto;
-       
-    }
-
-    private String cintaADepoDist() {
-        String producto = cinta.retirar();
-        System.out.println("Operador 2                                      cinta->depD(" + producto + ")" );
-        depoDistribucion.agregar(producto);
-        return producto;
-        
     }
 }
