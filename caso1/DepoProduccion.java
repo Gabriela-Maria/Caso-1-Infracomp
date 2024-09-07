@@ -8,7 +8,7 @@ public class DepoProduccion {
         this.capDepProd = EcapDepProd;
     }
 
-    public synchronized void agregar(String producto, int id){
+    public synchronized void agregar(String producto){
         //si esta lleno
         while (productos.size() >= capDepProd) {  
             try {

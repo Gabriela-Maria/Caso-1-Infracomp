@@ -2,12 +2,6 @@ import java.util.Scanner;
 
 public class Principal {
 
-    private static int contadorGlobal = 1;
-
-    // Método estático para obtener el próximo ID de los productos
-    public static synchronized int getNextID() {
-        return contadorGlobal++;
-    }
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
