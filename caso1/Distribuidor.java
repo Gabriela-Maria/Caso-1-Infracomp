@@ -13,8 +13,6 @@ public class Distribuidor extends Thread{
     public void run(){
         while (continuar){
             String producto = deposito.retirar(tipo);
-          //  int id = Principal.getNextID();
-
             if (producto.contains("FIN_")) {
                 System.out.println("Distribuidor                                    distribuir(" + producto + ")");
                 continuar = false;

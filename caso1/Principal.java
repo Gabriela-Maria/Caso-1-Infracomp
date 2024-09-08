@@ -37,7 +37,7 @@ public class Principal {
         Operador operadorProd = new Operador(depoProduccion, null, cinta);
         Operador operadorDist = new Operador(null, depoDistribucion, cinta);
 
-        // Iniciar hilos
+        // Iniciar threads
         productorA1.start();
         productorA2.start();
         productorB1.start();

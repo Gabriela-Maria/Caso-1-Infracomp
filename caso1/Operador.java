@@ -14,10 +14,11 @@ public class Operador extends Thread{
     @Override
     public void run(){
         while (continuar){
-            if (depoDistribucion==null) {
-                // De producto de DepoProduccion a Cinta
 
-                // Retira de producto de DepoProduccion 
+            // producto de DepoProduccion a Cinta
+            if (depoDistribucion==null) {
+
+                // intenta retirar producto de DepoProduccion 
                 String producto = depoProduccion.retirar();  
                 while(producto==null){
                      Thread.yield();
@@ -27,7 +28,7 @@ public class Operador extends Thread{
 
                 System.out.println("Operador 1                                      depP->cinta(" + producto + ")");
 
-                // Agrega a la cinta
+                // intenta agregar producto a la Cinta
                 boolean agregado = cinta.agregar(producto);
                 while(!agregado){
                         Thread.yield();
@@ -35,17 +36,17 @@ public class Operador extends Thread{
 
                 }
 
-                if (producto.contains("FIN_")){
-                    finalizados++;
-                }
-                if (finalizados ==4){
-                    continuar = false;
-                }
+                if (producto.contains("FIN_")) finalizados++;
+                
+                if (finalizados ==4) continuar = false; //cuando todos los productos finales pasen a la Cinta
 
-            } else if (depoProduccion==null) {
-                // producto de Cinta a DepoDistribucion
 
-                // Retira de la cinta
+            } 
+
+            // producto de Cinta a DepoDistribucion
+            else if (depoProduccion==null) {
+
+                // intenta retirar producto de la Cinta
                 String producto = cinta.retirar();
                 while(producto==null){
                         Thread.yield();
@@ -54,7 +55,8 @@ public class Operador extends Thread{
                 } 
 
                 System.out.println("Operador 2                                      cinta->depD(" + producto + ")" );
-                // Agrega a deposito de distribucion
+                
+                // intenta agrega a DepoDistribucion
                 boolean agregado = depoDistribucion.agregar(producto);
                 while(!agregado){
                     Thread.yield();   
@@ -62,12 +64,10 @@ public class Operador extends Thread{
 
                 }
 
-                if (producto.contains("FIN_")){
-                    finalizados++;
-                }
-                if (finalizados ==4){
-                    continuar=false;
-                }
+                if (producto.contains("FIN_")) finalizados++;
+                
+                if (finalizados == 4) continuar=false; // cuando todos los productos finales pasen a DepoDistribucion
+                
     
             }
         }

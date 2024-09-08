@@ -15,8 +15,6 @@ public class Productor extends Thread{
         while (numProdActual< numProductos){
             //creacion del producto
             //ej: "A1", "B67", donde el numero es el numero de productos creados hasta el momento por el productor
-           
-
             String producto = tipo+numProdActual;
             System.out.println("Productor                                       producir(" + producto + ")" );
             deposito.agregar(producto);
